@@ -1,22 +1,253 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>David Photography</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>David Hernandez Portafolio Web</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      cursor: none;
+    }
+
+    body {
+      background: #0b0b0b;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Fondo blur */
+    .bg-blur {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      filter: blur(120px);
+      top: -150px;
+      right: -150px;
+      z-index: -1;
+      animation: floating 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes floating {
+      from {
+        transform: translateY(0px);
+      }
+      to {
+        transform: translateY(50px);
+      }
+    }
+
+    /* Cursor personalizado */
+    .cursor {
+      width: 20px;
+      height: 20px;
+      border: 1px solid white;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+      z-index: 9999;
+      backdrop-filter: blur(4px);
+    }
+
+    .cursor-dot {
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+    }
+
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
+      z-index: -1;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      letter-spacing: 2px;
+      animation: fadeUp 1.2s ease forwards;
+    }
+
+    .subtitle {
+      margin-top: 20px;
+      color: rgba(255,255,255,0.7);
+      font-size: 1.1rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      animation: fadeUp 1.6s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .scroll-text {
+      position: absolute;
+      bottom: 40px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% {
+        opacity: 0.3;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    section {
+      padding: 80px 5vw;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .gallery {
+      columns: 3;
+      column-gap: 16px;
+    }
+
+    .gallery img {
+      width: 100%;
+      margin-bottom: 16px;
+      border-radius: 18px;
+      transition: 0.4s ease;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: reveal 1s forwards;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+      filter: brightness(1.1);
+    }
+
+    @keyframes reveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .glass-card {
+      margin-top: 100px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      padding: 40px;
+      backdrop-filter: blur(12px);
+      text-align: center;
+    }
+
+    .glass-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .glass-card p {
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    footer {
+      padding: 60px 20px;
+      text-align: center;
+      color: rgba(255,255,255,0.4);
+    }
+
+    @media (max-width: 900px) {
+      .gallery {
+        columns: 2;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .gallery {
+        columns: 1;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      * {
+        cursor: auto;
+      }
+
+      .cursor,
+      .cursor-dot {
+        display: none;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
+  <div class="bg-blur"></div>
+
+  <div class="cursor"></div>
+  <div class="cursor-dot"></div>
+
   <header>
-    <h1>David Hernandez Fotografía</h1>
-    <p>Fotografía urbana · Bogotá</p>
+    <h1>David Photography</h1>
+    <p class="subtitle">Urban · Universidad · Paisajes</p>
+
+    <div class="scroll-text">
+      Scroll to explore
+    </div>
   </header>
 
-  <section class="gallery">
+  <section>
+    <h2 class="section-title">Galería</h2>
 
+    <div class="gallery">
     <img src="Fotos/Foto1.jpeg" alt="">
     <img src="Fotos/Foto2.jpeg" alt="">
     <img src="Fotos/Foto3.jpeg" alt="">
@@ -33,8 +264,41 @@
     <img src="Fotos/Foto14.jpeg" alt="">
     <img src="Fotos/Foto15.jpeg" alt="">
     <img src="Fotos/Foto16.jpeg" alt="">
-    <img src="Fotos/Foto17.jpeg" alt="">
+    </div>
+
+    <div class="glass-card">
+      <h2>Sobre mí</h2>
+
+      <p>
+        La fotografía para mí es una forma de congelar emociones y atmósferas.
+        Me interesa especialmente la estética urbana, las luces nocturnas,
+        la lluvia, el movimiento y los pequeños detalles cotidianos.
+      </p>
+    </div>
   </section>
+
+  <footer>
+    © 2026 David Hernandez Portafolio
+  </footer>
+
+  <script>
+    const cursor = document.querySelector('.cursor');
+    const dot = document.querySelector('.cursor-dot');
+
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+
+      dot.style.left = e.clientX + 'px';
+      dot.style.top = e.clientY + 'px';
+    });
+
+    const images = document.querySelectorAll('.gallery img');
+
+    images.forEach((img, index) => {
+      img.style.animationDelay = `${index * 0.12}s`;
+    });
+  </script>
 
 </body>
 </html>
