@@ -1,3 +1,7 @@
-# Qwertyyy08.github.io
-title: Octocat's homepage
-description: Bookmark this to keep an eye on my project updates!
+# Portafolio Web Fotográfico 📸 
+## David Santiago Hernandez Rojas - 20251020153
+---
+![foto](Fotos/Foto1.jpeg)
+
+```bash
+Sitio web creado para mostrar mi trabajo fotográfico y proyectos visuales.
