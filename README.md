@@ -41,4 +41,3 @@ Universidad Pública
 </p>
 ---
 
-Sitio web creado para mostrar mi trabajo fotográfico y proyectos visuales.
