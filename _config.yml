@@ -1,6 +1,0 @@
-title: David Hernandez | Fotografía
-description: Sitio web creado para mostrar mi trabajo fotográfico y proyectos visuales.
-theme: jekyll-theme-midnight
-
-plugins:
-- jekyll-remote-theme # add this line to the plugins list if you already have one
